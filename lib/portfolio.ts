@@ -53,7 +53,11 @@ export function trailingReturn(history: NavPoint[], period: number | ReturnPerio
   const current = history.at(-1)!;
   const days = typeof period === 'number' ? period * 365.25 : periodDays[period];
   const target = (asOf?.getTime() ?? navDateValue(current.date)) - days * 86400000;
+  if (navDateValue(history[0].date) > target) return null;
   const reference = history.find(point => navDateValue(point.date) >= target);
   if (!reference || reference.nav <= 0) return null;
-  return (current.nav / reference.nav - 1) * 100;
+  const growth = current.nav / reference.nav;
+  return (typeof period === 'number' || period.endsWith('Y')
+    ? Math.pow(growth, 365.25 / days) - 1
+    : growth - 1) * 100;
 }

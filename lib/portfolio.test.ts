@@ -24,7 +24,17 @@ describe('portfolio calculations', () => {
     expect(trailingReturn(shortHistory, '1W')).toBeCloseTo(10);
     expect(trailingReturn(shortHistory, '1D')).toBeCloseTo(110 / 105 * 100 - 100);
   });
+  it('annualizes 3-year and 5-year returns', () => {
+    const longHistory: NavPoint[] = [
+      { date: '15-10-2021', nav: 100 },
+      { date: '15-10-2023', nav: 110 },
+      { date: '15-10-2026', nav: 133.1 },
+    ];
+    expect(trailingReturn(longHistory, '3Y')).toBeCloseTo(6.56, 1);
+    expect(trailingReturn(longHistory, '5Y')).toBeCloseTo(5.91, 1);
+  });
   it('shows no return when history is too short', () => {
     expect(trailingReturn(history.slice(-1), 1)).toBeNull();
+    expect(trailingReturn(history, '5Y', new Date('2026-10-15T00:00:00'))).toBeNull();
   });
 });
