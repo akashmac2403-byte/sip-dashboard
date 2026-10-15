@@ -21,6 +21,6 @@ Edit `lib/funds.ts` to change names, roles, target weights, category and MFAPI s
 
 ## Data and limitations
 
-The free MFAPI endpoint is cached for six hours. In case of request failures the route returns a stale/unavailable marker and the UI shows a stale data state; there is no persistent server database in this personal version. Logged contributions are amount/date based. Accurate XIRR requires unit quantities or transaction-date NAV, which the first version does not infer from contribution amounts.
+The free MFAPI endpoint is cached for six hours. In case of request failures the route returns a stale/unavailable marker and the UI shows a stale data state; there is no persistent server database in this personal version. Logged contributions are stored as amount/date pairs. Holdings estimate units from the nearest available transaction-date NAV and calculate current value and XIRR from the recorded cash flows. Historical NAV availability can limit the result.
 
 Projection outputs are illustrative. Educational tool, not investment advice. Past performance does not guarantee future returns.
