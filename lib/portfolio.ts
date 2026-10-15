@@ -38,10 +38,21 @@ export function portfolioMetrics(entries: PortfolioEntry[], historyByKey: Record
   return { value, xirr: (low + high) / 2 * 100 };
 }
 
-export function trailingReturn(history: NavPoint[], years: number, asOf = new Date()) {
+export type ReturnPeriod = '1D' | '1W' | '1M' | '3M' | '6M' | '1Y' | '3Y' | '5Y';
+
+const periodDays: Record<ReturnPeriod, number> = {
+  '1D': 1, '1W': 7, '1M': 30, '3M': 91, '6M': 182, '1Y': 365, '3Y': 1095, '5Y': 1826,
+};
+
+export function latestNav(history: NavPoint[]) {
+  return history.at(-1) ?? null;
+}
+
+export function trailingReturn(history: NavPoint[], period: number | ReturnPeriod, asOf?: Date) {
   if (history.length < 2) return null;
   const current = history.at(-1)!;
-  const target = asOf.getTime() - years * 365.25 * 86400000;
+  const days = typeof period === 'number' ? period * 365.25 : periodDays[period];
+  const target = (asOf?.getTime() ?? navDateValue(current.date)) - days * 86400000;
   const reference = history.find(point => navDateValue(point.date) >= target);
   if (!reference || reference.nav <= 0) return null;
   return (current.nav / reference.nav - 1) * 100;

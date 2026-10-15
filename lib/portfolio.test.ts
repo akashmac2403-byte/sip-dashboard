@@ -15,6 +15,15 @@ describe('portfolio calculations', () => {
   it('calculates trailing annualized-period return', () => {
     expect(trailingReturn(history, 1, new Date('2026-10-15T00:00:00'))).toBeCloseTo(10);
   });
+  it('calculates shorter returns from the most recent available NAV date', () => {
+    const shortHistory: NavPoint[] = [
+      { date: '08-10-2026', nav: 100 },
+      { date: '14-10-2026', nav: 105 },
+      { date: '15-10-2026', nav: 110 },
+    ];
+    expect(trailingReturn(shortHistory, '1W')).toBeCloseTo(10);
+    expect(trailingReturn(shortHistory, '1D')).toBeCloseTo(110 / 105 * 100 - 100);
+  });
   it('shows no return when history is too short', () => {
     expect(trailingReturn(history.slice(-1), 1)).toBeNull();
   });
