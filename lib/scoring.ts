@@ -4,7 +4,7 @@ export type ScoreInput={fund:Fund;history:NavPoint[];niftyHistory:NavPoint[];inv
 export type ScoreResult={key:string;score:number;drawdown:number;drift:number;momentum:number;quality:number;disqualified:boolean;reason:string;aboveDma:boolean};
 const atDays=(h:NavPoint[],days:number)=>{const target=Date.now()-days*864e5; return h.find(p=>new Date(p.date.split('-').reverse().join('-')).getTime()>=target)?.nav ?? h[h.length-1]?.nav ?? 0};
 export function drawdown(current:number,high:number){return high>0?Math.max(0,(high-current)/high*100):0}
-export function dmaStatus(history:NavPoint[],period=200){const recent=history.slice(-period).map(x=>x.nav);const avg=recent.reduce((a,b)=>a+b,0)/(recent.length||1);return {average:avg,above:history.at(-1)?.nav>avg*1.25,percent:avg?((history.at(-1)?.nav/avg)-1)*100:0}}
+export function dmaStatus(history:NavPoint[],period=200){const recent=history.slice(-period).map(x=>x.nav);const avg=recent.reduce((a,b)=>a+b,0)/(recent.length||1);const current=history.at(-1)?.nav ?? 0;return {average:avg,above:current>avg*1.25,percent:avg?((current/avg)-1)*100:0}}
 function cagr(history:NavPoint[],days:number){const old=atDays(history,days),now=history.at(-1)?.nav||0;return old>0?Math.pow(now/old,365/days)-1:0}
 export function scoreFund({fund,history,niftyHistory,invested,totalInvested}:ScoreInput):ScoreResult{
  const now=history.at(-1)?.nav||0, year=drawdown(now,Math.max(...history.slice(-252).map(p=>p.nav),now)), three=drawdown(now,Math.max(...history.slice(-756).map(p=>p.nav),now));
