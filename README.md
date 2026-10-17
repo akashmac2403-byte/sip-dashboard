@@ -15,6 +15,8 @@ Run `npm test` for scoring tests and `npm run build` for a production build.
 
 Edit `lib/funds.ts` to change names, roles, target weights, category and MFAPI scheme codes. Codes are intended to point to Direct Plan – Growth options. Verify a code with `https://api.mfapi.in/mf/search?q=<name>` and inspect its scheme name before using it.
 
+Default retirement SIP targets are UTI Nifty 50 30%, Parag Parikh Flexi Cap 25%, Invesco India Mid Cap 20%, Nippon India Small Cap 15%, and SBI Gold 10%. The default ₹15,000 monthly SIP steps up by 10% every six months; this interval is reflected in the projection page too.
+
 ## Scoring
 
 `lib/scoring.ts` contains pure functions for drawdown, DMA guard, quality comparison and tactical allocation. The UI displays the resulting signal and reasons. Portfolio data is held in localStorage and supports JSON export/import.
