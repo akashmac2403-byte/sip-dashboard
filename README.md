@@ -30,6 +30,6 @@ Projection outputs are illustrative. Educational tool, not investment advice. Pa
 
 ## Fund availability update (October 2026)
 
-- **HDFC Small Cap Fund – Direct Growth** (MFAPI scheme code `130503`) replaces Nippon India Small Cap Fund for new one-time monthly investments. HDFC's official fund page offers a lump-sum purchase route. Nippon's fresh lump-sum restriction is not a blanket ban on all investments; its SIP/STP limits are separate.
-- **SBI Gold ETF** (MFAPI scheme code `111954`) replaces SBI Gold Fund FoF for new gold exposure while fresh gold FoF subscriptions are suspended. This is an exchange-traded fund, not a mutual-fund-app FoF purchase: a demat/trading account is required. The dashboard uses the published ETF NAV for its chart and estimates; actual exchange execution price may differ from NAV.
-- Fund availability can change. Check the latest AMC notice and order availability in Groww before placing an investment. These are similar-category substitutes, not a prediction of better performance.
+- **HDFC Small Cap Fund – Direct Growth** (MFAPI scheme code `130503`) replaces Nippon India Small Cap Fund for new one-time monthly purchases. HDFC's official fund page offers a lump-sum route. Nippon's restriction applies to fresh lump sums; its SIP/STP limits are separate.
+- **UTI Gold ETF Fund of Fund – Direct Growth** (MFAPI scheme code `150714`) is tracked as your existing gold mutual-fund holding. UTI has temporarily paused fresh lump-sum purchases and new SIP/STP registrations from October 16, 2026. The dashboard holds the configured gold share aside rather than recommending an unavailable purchase. Existing units and pre-registered SIPs can still be tracked.
+- Availability can change. Check UTI's latest notice and order acceptance in Groww before investing. These are category substitutes, not a prediction of better performance.
